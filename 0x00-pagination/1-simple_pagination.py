@@ -41,8 +41,6 @@ class Server:
 
         start, stop = index_range(page, page_size)
 
-        print(start)
-        print(stop)
         try:
             data = self.dataset()
             return data[start:stop]
