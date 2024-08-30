@@ -23,11 +23,12 @@ class MRUCache(BaseCaching):
             sorted_rank = dict(sorted(self.__rank_data.items(),
                                       key=lambda item: item[1]))
 
+            print(sorted_rank)
+
             most_recent_key, _ = sorted_rank.popitem()
 
-            _ = self.cache_data.pop(most_recent_key)
-            self.__rank_data = sorted_rank
-
+            del self.cache_data[most_recent_key]
+            del self.__rank_data[most_recent_key]
             print(f"DISCARD: {most_recent_key}")
 
         self.cache_data[key] = item
@@ -39,8 +40,7 @@ class MRUCache(BaseCaching):
 
     def get(self, key):
         """returns the item associated with key else none"""
-        if key:
-            # for every access increment the rank
+        if key in self.cache_data.keys():
             self.__rank += 1
             self.__rank_data[key] = self.__rank
             return self.cache_data.get(key)
