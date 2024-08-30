@@ -23,8 +23,6 @@ class MRUCache(BaseCaching):
             sorted_rank = dict(sorted(self.__rank_data.items(),
                                       key=lambda item: item[1]))
 
-            print(sorted_rank)
-
             most_recent_key, _ = sorted_rank.popitem()
 
             del self.cache_data[most_recent_key]
