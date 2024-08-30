@@ -46,6 +46,7 @@ class LFUCache(BaseCaching):
         """returns the item associated with key else none"""
         if key in self.cache_data.keys():
             self.__lfu_data[key]["freq"] += 1
-            self.__lfu_data[key]["rank"] += 1
+            self.__rank += 1
+            self.__lfu_data[key]["rank"] = self.__rank
             return self.cache_data.get(key)
         return None
