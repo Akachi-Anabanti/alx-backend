@@ -41,8 +41,7 @@ class MRUCache(BaseCaching):
         """returns the item associated with key else none"""
         if key:
             # for every access increment the rank
-            if self.__rank_data.get(key):
-                self.__rank += 1
-                self.__rank_data[key] = self.__rank
+            self.__rank += 1
+            self.__rank_data[key] = self.__rank
             return self.cache_data.get(key)
         return None
